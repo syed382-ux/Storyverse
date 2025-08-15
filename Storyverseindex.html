@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StoryVerse - Read, Write, Inspire</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+cream: '#FDF6E3',
+gold: '#D4AF37',
+deepblue: '#1E3A8A'
+},
+fontFamily: {
+serif: ['Playfair Display', 'serif'],
+sans: ['Inter', 'sans-serif']
+}
+}
+}
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+.hero-bg {
+background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+position: relative;
+overflow: hidden;
+}
+.hero-bg::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+animation: sparkle 20s linear infinite;
+}
+@keyframes sparkle {
+0% { transform: translateY(0px); }
+100% { transform: translateY(-60px); }
+}
+@keyframes float {
+0%, 100% { transform: translateY(0px); }
+50% { transform: translateY(-20px); }
+}
+@keyframes glow {
+0%, 100% { box-shadow: 0 0 20px rgba(147, 51, 234, 0.3); }
+50% { box-shadow: 0 0 40px rgba(147, 51, 234, 0.6); }
+}
+.floating {
+animation: float 6s ease-in-out infinite;
+}
+.glowing {
+animation: glow 3s ease-in-out infinite;
+}
+.book-shadow {
+box-shadow: 0 20px 40px rgba(147, 51, 234, 0.2);
+}
+.star-rating {
+color: #fbbf24;
+}
+.fairy-card {
+background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(240,240,255,0.8));
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255,255,255,0.2);
+}
+.magic-button {
+background: linear-gradient(45deg, #667eea, #764ba2);
+position: relative;
+overflow: hidden;
+}
+.magic-button::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+transition: left 0.5s;
+}
+.magic-button:hover::before {
+left: 100%;
+}
+.character-float {
+animation: float 4s ease-in-out infinite;
+}
+</style>
+</head>
+<body class="font-sans bg-cream">
+<!-- Navigation -->
+<nav class="bg-white/90 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-purple-100">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<div class="flex items-center">
+<span class="text-2xl mr-2">🧚‍♀️</span>
+<h1 class="text-2xl font-serif font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">StoryVerse</h1>
+</div>
+<div class="hidden md:flex space-x-8">
+<a href="#" class="text-gray-700 hover:text-purple-600 transition-colors font-medium">📚 Browse</a>
+<a href="#" class="text-gray-700 hover:text-purple-600 transition-colors font-medium">✍️ Write</a>
+<a href="#" class="text-gray-700 hover:text-purple-600 transition-colors font-medium">👥 Community</a>
+<a href="#" class="text-gray-700 hover:text-purple-600 transition-colors font-medium">✨ Premium</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="text-purple-600 hover:text-purple-800 transition-colors font-medium">Sign In</button>
+<button class="magic-button text-white px-6 py-2 rounded-full hover:scale-105 transition-transform font-medium">Join Free ✨</button>
+</div>
+</div>
+</div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-bg py-20 relative">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<div class="flex flex-col lg:flex-row items-center">
+<div class="lg:w-1/2 mb-10 lg:mb-0">
+<div class="floating">
+<h2 class="text-5xl lg:text-6xl font-serif font-bold text-white mb-6 drop-shadow-lg">
+Read, Write, Inspire ✨
+</h2>
+</div>
+<p class="text-xl text-white/90 mb-8 leading-relaxed drop-shadow">
+Enter a magical realm where stories come alive! 🌟 Connect with enchanted tales, mystical characters, and fellow dreamers in our whimsical literary kingdom.
+</p>
+<button class="magic-button text-white px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 transition-all shadow-lg glowing">
+🌙 Start Your Journey
+</button>
+</div>
+<div class="lg:w-1/2 flex justify-center relative">
+<!-- Floating Characters -->
+<div class="absolute -top-10 -left-10 character-float">
+<span class="text-6xl">🧚‍♀️</span>
+</div>
+<div class="absolute -top-5 right-10 character-float" style="animation-delay: -1s;">
+<span class="text-5xl">🦄</span>
+</div>
+<div class="absolute bottom-10 -left-5 character-float" style="animation-delay: -2s;">
+<span class="text-4xl">🌟</span>
+</div>
+<div class="absolute top-1/2 -right-5 character-float" style="animation-delay: -3s;">
+<span class="text-5xl">🐉</span>
+</div>
+
+<!-- Magical Book -->
+<div class="relative floating">
+<svg width="400" height="300" viewBox="0 0 400 300" class="book-shadow rounded-lg glowing">
+<defs>
+<linearGradient id="bookGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" style="stop-color:#667eea"/>
+<stop offset="50%" style="stop-color:#764ba2"/>
+<stop offset="100%" style="stop-color:#f093fb"/>
+</linearGradient>
+<linearGradient id="pageGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" style="stop-color:#ffffff"/>
+<stop offset="100%" style="stop-color:#f8fafc"/>
+</linearGradient>
+</defs>
+<rect width="400" height="300" fill="url(#bookGradient)" rx="15"/>
+<rect x="20" y="20" width="360" height="260" fill="url(#pageGradient)" rx="10"/>
+<rect x="40" y="50" width="120" height="160" fill="#fbbf24" rx="8"/>
+
+<!-- Magical sparkles -->
+<circle cx="80" cy="80" r="3" fill="#ffffff" opacity="0.8">
+<animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
+</circle>
+<circle cx="120" cy="120" r="2" fill="#ffffff" opacity="0.6">
+<animate attributeName="opacity" values="0.6;0.2;0.6" dur="1.5s" repeatCount="indefinite"/>
+</circle>
+<circle cx="100" cy="180" r="2.5" fill="#ffffff" opacity="0.7">
+<animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.8s" repeatCount="indefinite"/>
+</circle>
+
+<rect x="180" y="60" width="180" height="25" fill="#667eea" rx="3"/>
+<rect x="180" y="100" width="160" height="10" fill="#94a3b8" rx="2"/>
+<rect x="180" y="120" width="140" height="10" fill="#94a3b8" rx="2"/>
+<rect x="180" y="140" width="170" height="10" fill="#94a3b8" rx="2"/>
+<rect x="180" y="160" width="150" height="10" fill="#94a3b8" rx="2"/>
+
+<text x="200" y="250" font-family="serif" font-size="18" fill="#667eea" font-weight="bold">✨ StoryVerse ✨</text>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Featured Stories -->
+<section class="py-16 bg-gradient-to-br from-purple-50 to-pink-50 relative">
+<!-- Floating decorative elements -->
+<div class="absolute top-10 left-10 character-float">
+<span class="text-3xl opacity-20">🌸</span>
+</div>
+<div class="absolute top-20 right-20 character-float" style="animation-delay: -1s;">
+<span class="text-4xl opacity-20">✨</span>
+</div>
+<div class="absolute bottom-20 left-1/4 character-float" style="animation-delay: -2s;">
+<span class="text-3xl opacity-20">🦋</span>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h3 class="text-4xl font-serif font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+✨ Enchanted Tales ✨
+</h3>
+<p class="text-gray-600 text-lg">Discover magical stories that will transport you to other worlds</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="featured-stories">
+<!-- Stories will be loaded here -->
+<div class="text-center py-12 col-span-full">
+<div class="fairy-card rounded-2xl p-8 max-w-md mx-auto">
+<span class="text-6xl mb-4 block">📚</span>
+<p class="text-purple-600 text-lg font-medium">Magical stories will appear here soon! ✨</p>
+<p class="text-gray-500 mt-2">Each tale waiting to whisk you away on an adventure</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Genres Section -->
+<section class="py-16 bg-gradient-to-r from-indigo-100 via-purple-50 to-pink-100 relative overflow-hidden">
+<!-- Magical background elements -->
+<div class="absolute inset-0 opacity-10">
+<div class="absolute top-1/4 left-1/4 w-32 h-32 bg-purple-300 rounded-full blur-3xl"></div>
+<div class="absolute bottom-1/4 right-1/4 w-40 h-40 bg-pink-300 rounded-full blur-3xl"></div>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<div class="text-center mb-12">
+<h3 class="text-4xl font-serif font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+🌟 Magical Realms 🌟
+</h3>
+<p class="text-gray-600 text-lg">Choose your adventure and dive into enchanted worlds</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<button class="fairy-card text-purple-700 px-8 py-4 rounded-full font-semibold hover:scale-110 hover:shadow-xl transition-all duration-300 border-2 border-purple-200 hover:border-purple-400">
+💕 Romance
+</button>
+<button class="fairy-card text-purple-700 px-8 py-4 rounded-full font-semibold hover:scale-110 hover:shadow-xl transition-all duration-300 border-2 border-purple-200 hover:border-purple-400">
+🔮 Mystery
+</button>
+<button class="fairy-card text-purple-700 px-8 py-4 rounded-full font-semibold hover:scale-110 hover:shadow-xl transition-all duration-300 border-2 border-purple-200 hover:border-purple-400">
+🐉 Fantasy
+</button>
+<button class="fairy-card text-purple-700 px-8 py-4 rounded-full font-semibold hover:scale-110 hover:shadow-xl transition-all duration-300 border-2 border-purple-200 hover:border-purple-400">
+🌙 Dark Tales
+</button>
+<button class="fairy-card text-purple-700 px-8 py-4 rounded-full font-semibold hover:scale-110 hover:shadow-xl transition-all duration-300 border-2 border-purple-200 hover:border-purple-400">
+⭐ Inspiration
+</button>
+</div>
+</div>
+</section>
+
+<!-- Writer's Corner -->
+<section class="py-16 bg-gradient-to-br from-purple-900 via-indigo-900 to-purple-800 text-white relative overflow-hidden">
+<!-- Magical background -->
+<div class="absolute inset-0">
+<div class="absolute top-10 left-10 w-20 h-20 bg-yellow-300 rounded-full opacity-20 blur-xl"></div>
+<div class="absolute bottom-20 right-20 w-32 h-32 bg-pink-300 rounded-full opacity-15 blur-2xl"></div>
+<div class="absolute top-1/2 left-1/3 w-16 h-16 bg-blue-300 rounded-full opacity-25 blur-xl"></div>
+</div>
+
+<!-- Floating characters -->
+<div class="absolute top-10 right-10 character-float">
+<span class="text-4xl opacity-30">✍️</span>
+</div>
+<div class="absolute bottom-10 left-10 character-float" style="animation-delay: -1s;">
+<span class="text-5xl opacity-30">📝</span>
+</div>
+<div class="absolute top-1/2 right-1/4 character-float" style="animation-delay: -2s;">
+<span class="text-3xl opacity-30">💫</span>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+<div class="floating">
+<h3 class="text-4xl font-serif font-bold mb-6">
+✨ Enchanted Writer's Sanctuary ✨
+</h3>
+</div>
+<p class="text-xl mb-8 max-w-3xl mx-auto text-white/90 leading-relaxed">
+Have a magical tale brewing in your imagination? 🌟 Join our mystical community of storytellers!
+Share your enchanted narratives, build your devoted readership, and let your creativity sparkle! ✨
+</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="magic-button text-white px-8 py-4 rounded-full font-semibold hover:scale-105 transition-all shadow-lg">
+🪶 Begin Your Tale
+</button>
+<button class="fairy-card text-purple-700 px-8 py-4 rounded-full font-semibold hover:scale-105 transition-all border-2 border-white/30 hover:border-white/60">
+🔮 Discover Magic
+</button>
+</div>
+</div>
+</section>
+
+<!-- Premium Membership -->
+<section class="py-16 bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50 relative">
+<!-- Floating magical elements -->
+<div class="absolute top-10 left-10 character-float">
+<span class="text-4xl opacity-20">💎</span>
+</div>
+<div class="absolute top-20 right-20 character-float" style="animation-delay: -1s;">
+<span class="text-3xl opacity-20">👑</span>
+</div>
+<div class="absolute bottom-20 left-1/3 character-float" style="animation-delay: -2s;">
+<span class="text-4xl opacity-20">🌟</span>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h3 class="text-4xl font-serif font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+✨ Magical Memberships ✨
+</h3>
+<p class="text-gray-600 text-lg">Choose your level of enchantment and unlock mystical features</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Free Plan -->
+<div class="fairy-card rounded-2xl p-8 text-center hover:scale-105 transition-all duration-300">
+<div class="text-4xl mb-4">🌙</div>
+<h4 class="text-2xl font-serif font-bold text-purple-700 mb-4">Moonlight</h4>
+<div class="text-4xl font-bold text-purple-700 mb-6">Free<span class="text-lg font-normal">/forever</span></div>
+<ul class="text-left space-y-3 mb-8">
+<li class="flex items-center"><span class="text-purple-500 mr-2">✨</span>5 enchanted tales daily</li>
+<li class="flex items-center"><span class="text-purple-500 mr-2">✨</span>Basic quill & parchment</li>
+<li class="flex items-center"><span class="text-purple-500 mr-2">✨</span>Community gatherings</li>
+</ul>
+<button class="w-full bg-purple-100 text-purple-700 py-3 rounded-full font-semibold">Current Realm</button>
+</div>
+
+<!-- Premium Plan -->
+<div class="bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl p-8 text-center text-white transform scale-105 shadow-2xl glowing">
+<div class="text-4xl mb-4">🌟</div>
+<h4 class="text-2xl font-serif font-bold mb-4">Starlight</h4>
+<div class="text-4xl font-bold mb-6">$9.99<span class="text-lg font-normal">/month</span></div>
+<ul class="text-left space-y-3 mb-8">
+<li class="flex items-center"><span class="text-yellow-300 mr-2">✨</span>Unlimited magical stories</li>
+<li class="flex items-center"><span class="text-yellow-300 mr-2">✨</span>Enchanted writing tools</li>
+<li class="flex items-center"><span class="text-yellow-300 mr-2">✨</span>Early access to new realms</li>
+<li class="flex items-center"><span class="text-yellow-300 mr-2">✨</span>Ad-free sanctuary</li>
+</ul>
+<button class="w-full bg-white text-purple-600 py-3 rounded-full font-semibold hover:bg-yellow-50 transition-colors">✨ Ascend Now</button>
+</div>
+
+<!-- Pro Plan -->
+<div class="fairy-card rounded-2xl p-8 text-center hover:scale-105 transition-all duration-300">
+<div class="text-4xl mb-4">👑</div>
+<h4 class="text-2xl font-serif font-bold text-purple-700 mb-4">Royal Scribe</h4>
+<div class="text-4xl font-bold text-purple-700 mb-6">$19.99<span class="text-lg font-normal">/month</span></div>
+<ul class="text-left space-y-3 mb-8">
+<li class="flex items-center"><span class="text-purple-500 mr-2">✨</span>All Starlight powers</li>
+<li class="flex items-center"><span class="text-purple-500 mr-2">✨</span>Royal treasury earnings</li>
+<li class="flex items-center"><span class="text-purple-500 mr-2">✨</span>Crystal ball analytics</li>
+<li class="flex items-center"><span class="text-purple-500 mr-2">✨</span>Royal court support</li>
+</ul>
+<button class="w-full magic-button text-white py-3 rounded-full font-semibold hover:scale-105 transition-all">👑 Claim Throne</button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-16 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 relative">
+<!-- Floating testimonial decorations -->
+<div class="absolute top-10 right-10 character-float">
+<span class="text-3xl opacity-20">💬</span>
+</div>
+<div class="absolute bottom-10 left-10 character-float" style="animation-delay: -1s;">
+<span class="text-4xl opacity-20">💖</span>
+</div>
+<div class="absolute top-1/2 left-1/4 character-float" style="animation-delay: -2s;">
+<span class="text-3xl opacity-20">⭐</span>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h3 class="text-4xl font-serif font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+✨ Voices from the Realm ✨
+</h3>
+<p class="text-gray-600 text-lg">Hear the magical experiences of our beloved community</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="testimonials">
+<!-- Testimonials will be loaded here -->
+<div class="text-center py-12 col-span-full">
+<div class="fairy-card rounded-2xl p-8 max-w-md mx-auto">
+<span class="text-6xl mb-4 block">🗣️</span>
+<p class="text-purple-600 text-lg font-medium">Enchanted testimonials will appear here! ✨</p>
+<p class="text-gray-500 mt-2">Stories of wonder from our magical community</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gradient-to-br from-purple-900 via-indigo-900 to-purple-800 text-white py-16 relative overflow-hidden">
+<!-- Magical background elements -->
+<div class="absolute inset-0 opacity-10">
+<div class="absolute top-10 left-10 w-20 h-20 bg-pink-300 rounded-full blur-xl"></div>
+<div class="absolute bottom-20 right-20 w-32 h-32 bg-yellow-300 rounded-full blur-2xl"></div>
+<div class="absolute top-1/2 left-1/3 w-16 h-16 bg-blue-300 rounded-full blur-xl"></div>
+</div>
+
+<!-- Floating footer decorations -->
+<div class="absolute top-10 right-10 character-float">
+<span class="text-3xl opacity-30">🌟</span>
+</div>
+<div class="absolute bottom-20 left-10 character-float" style="animation-delay: -1s;">
+<span class="text-4xl opacity-30">✨</span>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<!-- Company Info -->
+<div>
+<div class="flex items-center mb-4">
+<span class="text-2xl mr-2">🧚‍♀️</span>
+<h4 class="text-2xl font-serif font-bold bg-gradient-to-r from-pink-300 to-purple-300 bg-clip-text text-transparent">StoryVerse</h4>
+</div>
+<p class="text-white/80 mb-4">Where magical stories come alive and enchanted writers thrive. Join our mystical community of passionate readers and storytellers! ✨</p>
+<div class="flex space-x-4">
+<a href="#" class="text-pink-300 hover:text-white transition-colors text-2xl hover:scale-110 transform duration-200">📘</a>
+<a href="#" class="text-pink-300 hover:text-white transition-colors text-2xl hover:scale-110 transform duration-200">🐦</a>
+<a href="#" class="text-pink-300 hover:text-white transition-colors text-2xl hover:scale-110 transform duration-200">📷</a>
+<a href="#" class="text-pink-300 hover:text-white transition-colors text-2xl hover:scale-110 transform duration-200">💼</a>
+</div>
+</div>
+
+<!-- Quick Links -->
+<div>
+<h5 class="font-semibold mb-4 text-pink-300">🔗 Quick Portals</h5>
+<ul class="space-y-2">
+<li><a href="#" class="text-white/70 hover:text-pink-300 transition-colors">📚 Browse Enchanted Tales</a></li>
+<li><a href="#" class="text-white/70 hover:text-pink-300 transition-colors">✍️ Craft Your Story</a></li>
+<li><a href="#" class="text-white/70 hover:text-pink-300 transition-colors">👥 Join the Circle</a></li>
+<li><a href="#" class="text-white/70 hover:text-pink-300 transition-colors">✨ Magical Memberships</a></li>
+</ul>
+</div>
+
+<!-- Support -->
+<div>
+<h5 class="font-semibold mb-4 text-pink-300">🛡️ Magical Support</h5>
+<ul class="space-y-2">
+<li><a href="#" class="text-white/70 hover:text-pink-300 transition-colors">🏰 Help Castle</a></li>
+<li><a href="#" class="text-white/70 hover:text-pink-300 transition-colors">📜 Scribe Guidelines</a></li>
+<li><a href="#" class="text-white/70 hover:text-pink-300 transition-colors">🔮 Privacy Spells</a></li>
+<li><a href="#" class="text-white/70 hover:text-pink-300 transition-colors">⚖️ Realm Rules</a></li>
+</ul>
+</div>
+
+<!-- Contact Form -->
+<div>
+<h5 class="font-semibold mb-4 text-pink-300">💌 Send a Magical Message</h5>
+<form class="space-y-4">
+<input type="email" placeholder="Your enchanted email ✨" class="w-full px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-pink-300 border border-white/20">
+<textarea placeholder="Share your magical thoughts 🌟" rows="3" class="w-full px-4 py-2 rounded-2xl bg-white/10 backdrop-blur-sm text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-pink-300 border border-white/20"></textarea>
+<button type="submit" class="w-full magic-button text-white py-2 rounded-full font-semibold hover:scale-105 transition-all">🌙 Send Message</button>
+</form>
+</div>
+</div>
+
+<div class="border-t border-white/20 mt-12 pt-8 text-center">
+<p class="text-white/70">✨ &copy; 2024 StoryVerse. All magical rights reserved. Made with 💖 for storytellers everywhere. ✨</p>
+</div>
+</div>
+</footer>
+
+<script>
+// Add smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const target = document.querySelector(this.getAttribute('href'));
+if (target) {
+target.scrollIntoView({
+behavior: 'smooth'
+});
+}
+});
+});
+
+// Magical genre button interactions
+document.querySelectorAll('button').forEach(button => {
+if (button.textContent.includes('Romance') || button.textContent.includes('Mystery') ||
+button.textContent.includes('Fantasy') || button.textContent.includes('Dark Tales') ||
+button.textContent.includes('Inspiration')) {
+button.addEventListener('click', function() {
+// Remove active class from all genre buttons
+document.querySelectorAll('button').forEach(btn => {
+if (btn.textContent.includes('Romance') || btn.textContent.includes('Mystery') ||
+btn.textContent.includes('Fantasy') || btn.textContent.includes('Dark Tales') ||
+btn.textContent.includes('Inspiration')) {
+btn.classList.remove('bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'text-white', 'shadow-xl');
+btn.classList.add('fairy-card', 'text-purple-700');
+}
+});
+
+// Add magical active class to clicked button
+this.classList.remove('fairy-card', 'text-purple-700');
+this.classList.add('bg-gradient-to-r', 'from-purple-600', 'to-pink-600', 'text-white', 'shadow-xl');
+
+// Add sparkle effect
+this.style.transform = 'scale(1.15)';
+setTimeout(() => {
+this.style.transform = 'scale(1.1)';
+}, 150);
+});
+}
+});
+
+// Contact form submission
+document.querySelector('footer form').addEventListener('submit', function(e) {
+e.preventDefault();
+const email = this.querySelector('input[type="email"]').value;
+const message = this.querySelector('textarea').value;
+
+if (email && message) {
+alert('Thank you for your message! We\'ll get back to you soon.');
+this.reset();
+} else {
+alert('Please fill in both email and message fields.');
+}
+});
+
+// Functions to load magical content dynamically (ready for real data)
+function loadFeaturedStories(stories) {
+const container = document.getElementById('featured-stories');
+container.innerHTML = '';
+
+stories.forEach((story, index) => {
+const storyCard = document.createElement('div');
+storyCard.className = 'fairy-card rounded-2xl p-6 book-shadow hover:transform hover:scale-105 transition-all cursor-pointer floating';
+storyCard.style.animationDelay = `${index * 0.2}s`;
+storyCard.innerHTML = `
+<div class="w-full h-48 bg-gradient-to-br ${story.gradient} rounded-2xl mb-4 flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
+<span class="text-white font-serif text-2xl relative z-10 drop-shadow-lg">${story.title}</span>
+<div class="absolute top-2 right-2 text-2xl">${story.emoji}</div>
+</div>
+<h4 class="font-serif font-semibold text-xl text-purple-700 mb-2">${story.title}</h4>
+<p class="text-purple-500 mb-2">by ${story.author} ✨</p>
+<div class="flex items-center justify-between">
+<span class="star-rating text-yellow-400">${story.rating}</span>
+<span class="text-sm text-purple-400">(${story.score})</span>
+</div>
+`;
+container.appendChild(storyCard);
+});
+}
+
+function loadTestimonials(testimonials) {
+const container = document.getElementById('testimonials');
+container.innerHTML = '';
+
+testimonials.forEach((testimonial, index) => {
+const testimonialCard = document.createElement('div');
+testimonialCard.className = 'fairy-card rounded-2xl p-6 shadow-lg hover:scale-105 transition-all duration-300 floating';
+testimonialCard.style.animationDelay = `${index * 0.3}s`;
+testimonialCard.innerHTML = `
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
+${testimonial.emoji || testimonial.initial}
+</div>
+<div class="ml-4">
+<h5 class="font-semibold text-purple-700">${testimonial.name}</h5>
+<p class="text-sm text-purple-500">${testimonial.role} ✨</p>
+</div>
+</div>
+<p class="text-gray-700 italic">"${testimonial.message}"</p>
+<div class="mt-3 flex justify-end">
+<span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+</div>
+`;
+container.appendChild(testimonialCard);
+});
+}
+
+// Example usage (uncomment and modify when you have real data):
+// loadFeaturedStories([
+// { title: "Your Story", author: "Author Name", rating: "★★★★★", score: "4.8", gradient: "from-purple-600 to-pink-500" }
+// ]);
+
+// loadTestimonials([
+// { name: "Reader Name", role: "Avid Reader", message: "Great platform!", initial: "R", color: "gold" }
+// ]);
+</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96f933c224e22097',t:'MTc1NTI2NjI1OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
